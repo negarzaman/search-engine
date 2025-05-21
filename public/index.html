@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google-like Search Engine</title>
+    <link rel="stylesheet" href="../src/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            padding: 16px;
+        }
+        .logo {
+            display: block;
+            margin: 40px auto 20px auto;
+            max-width: 90vw;
+            height: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+        }
+        .input-group {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        #search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 24px;
+            font-size: 18px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .button-group button {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid #dcdcdc;
+            transition: background 0.2s, border 0.2s;
+            margin-bottom: 8px;
+        }
+        .button-group button:hover {
+            background-color: #f1f1f1;
+            border: 1px solid #aaa;
+        }
+        #suggestions {
+            position: absolute;
+            background: #fff;
+            border: 1px solid #ccc;
+            width: 100%;
+            max-width: 400px;
+            z-index: 1000;
+            display: none;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .suggestion-item {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+        .suggestion-item:hover {
+            background: #f0f0f0;
+        }
+        footer {
+            width: 100%;
+            background: #f2f2f2;
+            border-top: 1px solid #e4e4e4;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            padding: 16px 0;
+            font-size: 15px;
+            color: #5f6368;
+        }
+        footer a {
+            margin: 0 15px;
+            color: #5f6368;
+            text-decoration: none;
+            font-size: 15px;
+        }
+        @media (max-width: 600px) {
+            .logo {
+                width: 80vw !important;
+                height: auto !important;
+                max-width: 220px;
+            }
+            h1 {
+                font-size: 1.2rem;
+            }
+            #search-input, #suggestions {
+                max-width: 95vw;
+                font-size: 16px;
+            }
+            .button-group button {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+            form {
+                max-width: 98vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <img 
+            src="../src/images/Negar.jpg" 
+            alt="Logo" 
+            class="logo" 
+            width="100" 
+            height="100"
+            style="display: block; margin-left: auto; margin-right: auto; margin-top: 40px; margin-bottom: 20px;"
+        >
+        <h1>Let's Search</h1>
+        <form id="search-form" action="https://www.google.com/search" method="GET" autocomplete="off">
+            <div class="input-group">
+                <input type="text" id="search-input" name="q" placeholder=" search here..nipa." required>
+                <div id="suggestions"></div>
+            </div>
+            <div class="button-group">
+                <button type="submit" name="btnK">Search With nipa</button>
+                <button type="submit" name="btnI" formaction="https://www.google.com/search?btnI=I&q=" id="lucky-btn">I'm Feeling Lucky</button>
+            </div>
+        </form>
+    </div>
+    <script src="../src/main.js"></script>
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const footer = document.querySelector('footer');
+        searchInput.addEventListener('input', function() {
+            if (this.value.trim().length > 0) {
+                footer.style.display = 'none';
+            } else {
+                footer.style.display = '';
+            }
+        });
+    </script>
+    <footer>
+        <div style="margin-bottom: 8px;">Country: Bangladesh</div>
+        <div>
+            <a href="#">About</a>
+            <a href="#">Advertising</a>
+            <a href="#">Business</a>
+            <a href="#">How Search works</a>
+        </div>
+        <div style="margin-top: 8px;">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Settings</a>
+        </div>
+        <div style="margin-top: 12px; font-size: 13px; color: #888;">
+            &copy; 2025 Negar Search Engine. All rights reserved.
+        </div>
+    </footer>
+</body>
+<style>
+    html, body {
+        height: 100%;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    .search-container {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Move main section upper */
+        justify-content: flex-start;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+    footer {
+        flex-shrink: 0;
+        width: 100%;
+        background: #f2f2f2;
+        border-top: 1px solid #e4e4e4;
+        text-align: center;
+        padding: 16px 0;
+        font-size: 15px;
+        color: #5f6368;
+    }
+</style>
+</html>

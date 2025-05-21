@@ -1,0 +1,16 @@
+{
+  "name": "google-like-search",
+  "version": "1.0.0",
+  "description": "A simple search engine that redirects user searches to Google.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "live-server public"
+  },
+  "keywords": [
+    "search",
+    "engine",
+    "google"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
